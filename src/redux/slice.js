@@ -72,6 +72,7 @@ const initialState = {
     weather: null,
     loading: false,
     error: null,
+    alert: false
 }
 
 
@@ -86,6 +87,7 @@ export const weatherSlice = createSlice({
                 state.error = null;
             })
             .addCase(getFirstCity.fulfilled, (state, action) => {
+               state.alert = !action.payload;
                 state.city = action.payload
                 state.loading = false;
                 state.error = null;
