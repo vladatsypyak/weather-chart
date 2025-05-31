@@ -15,12 +15,13 @@ function Chart() {
 
     return (
         <div className="chart_wrap">
-            {city &&  <BarChart width={730} height={250} data={forecast} margin={{top: 20, right: 20, bottom: 20, left: 20}} >
+            {city ? <BarChart width={730} height={250} data={forecast} margin={{top: 20, right: 20, bottom: 20, left: 20}} >
                 <XAxis dataKey="day" />
                 <YAxis />
                 <Tooltip />
                 <Bar dataKey="data" fill="#8884d8" />
-            </BarChart>}
+            </BarChart> :
+                <p>Please enter a city to see the forecast</p>}
 
         </div>
     );
