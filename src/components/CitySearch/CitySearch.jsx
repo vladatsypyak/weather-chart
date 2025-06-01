@@ -17,9 +17,9 @@ function CitySearch() {
     return (
         <div className="CitySearch">
             <input type="text" onInput={(e) => setCityInput(e.target.value)}/>
-            <button onClick={onSearchClick}> search</button>
-            <p>{city?.name}</p>
-            {alert && <p>alert</p>}
+            <button onClick={onSearchClick}>Search</button>
+            {city && <p>{city.name}, {city.country}{city.state && ","} {city.state}</p>}
+            {alert && <p>No city was found</p>}
         </div>
 
     );
