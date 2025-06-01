@@ -8,10 +8,10 @@ function Chart() {
     const forecast = useSelector(store => store.weatherSlice.weather)
     return (
         <div className={s.chart_wrap}>
-          <BarChart layout={"vertical"} width={900} height={400} data={forecast}
+          <BarChart width={900} height={400} data={forecast}
                               margin={{top: 20, right: 20, bottom: 20, left: 20}}>
-                    <XAxis type="number" domain={["auto", "auto"]} unit={"°C"}/>
-                    <YAxis type="category" dataKey="day"/>
+                    <XAxis  dataKey="day" />
+                    <YAxis domain={["auto", "auto"]} unit={"°C"}/>
                     <Tooltip formatter={(value) => {
                         if (Array.isArray(value)) {
                             return [`${value[0]} - ${value[1]}`]
