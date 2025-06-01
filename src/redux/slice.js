@@ -40,7 +40,7 @@ export const getFirstCity = createAsyncThunk('city/getCity',
 const getForecastForEachDay = (dates, details) => {
     return dates.map((day) => {
             const allTemperatures = details.filter(el => el.day === day).map(el => el.temp).flat()
-        return {day, temp: [Math.max(...allTemperatures), Math.min(...allTemperatures)]}
+        return {day, temp: [Math.min(...allTemperatures), Math.max(...allTemperatures)]}
         })
 }
 
