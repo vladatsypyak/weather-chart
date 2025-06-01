@@ -50,7 +50,7 @@ export const getWeather = createAsyncThunk('weather/getWeather',
             if (!city) return null
             const data = await fetchWeather(city)
             const details = data.list.map(el => {
-                return {temp: [el.main.temp_max, el.main.temp_min], day: (moment(new Date(el.dt * 1000)).format("dddd, DD.MM"))}
+                return {temp: [el.main.temp_max, el.main.temp_min], day: (moment(new Date(el.dt * 1000)).format("ddd, DD.MM"))}
             })
             const dates = [...new Set(details.map(el => el.day))]
             return getForecastForEachDay(dates, details)
