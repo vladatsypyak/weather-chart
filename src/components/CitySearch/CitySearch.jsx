@@ -17,8 +17,10 @@ function CitySearch() {
 
     return (
         <div className={s.search_wrap}>
-            <input placeholder={"Type your city"} type="text" onInput={(e) => setCityInput(e.target.value)}/>
-            <button onClick={onSearchClick}>Search</button>
+            <div className={s.input_wrap}>
+                <input placeholder={"Type your city"} type="text" onInput={(e) => setCityInput(e.target.value)}/>
+                <button onClick={onSearchClick}>Search</button>
+            </div>
             {city && <p className={s.text}>Forecast for {city.name}, {city.country}{city.state && ","} {city.state}</p>}
             {alert && <p className={s.alert}>No city was found 😞 </p>}
         </div>
