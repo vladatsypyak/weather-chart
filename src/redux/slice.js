@@ -1,20 +1,22 @@
-import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import axios from "axios";
 import moment from "moment";
 
 
 const fetchCities = async (city) => await axios
+    // eslint-disable-next-line no-undef
     .get(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${process.env.REACT_APP_API_KEY}`)
     .then(resp => resp.data)
     .catch(error => console.log(error))
 
 const fetchWeather = async (city) => {
+    // eslint-disable-next-line no-undef
     return await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
         .then(resp => resp.data)
         .catch(error => console.log(error))
 }
 
-export const getFirstCity = createAsyncThunk('city/getCity',
+export const getFirstCity = createAsyncThunk("city/getCity",
     async (city, thunkAPI) => {
         try {
             const data = await fetchCities(city)
@@ -32,25 +34,28 @@ export const getFirstCity = createAsyncThunk('city/getCity',
             if (error instanceof Error) {
                 return thunkAPI.rejectWithValue(error.message);
             } else {
-                return thunkAPI.rejectWithValue('Error when fetching city');
+                return thunkAPI.rejectWithValue("Error when fetching city");
             }
         }
     })
 
 const getForecastForEachDay = (dates, details) => {
     return dates.map((day) => {
-            const allTemperatures = details.filter(el => el.day === day).map(el => el.temp).flat()
+        const allTemperatures = details.filter(el => el.day === day).map(el => el.temp).flat()
         return {day, temp: [Math.min(...allTemperatures), Math.max(...allTemperatures)]}
-        })
+    })
 }
 
-export const getWeather = createAsyncThunk('weather/getWeather',
+export const getWeather = createAsyncThunk("weather/getWeather",
     async (city, thunkAPI) => {
         try {
             if (!city) return null
             const data = await fetchWeather(city)
             const details = data.list.map(el => {
-                return {temp: [el.main.temp_max, el.main.temp_min], day: (moment(new Date(el.dt * 1000)).format("ddd, DD.MM"))}
+                return {
+                    temp: [el.main.temp_max, el.main.temp_min],
+                    day: (moment(new Date(el.dt * 1000)).format("ddd, DD.MM"))
+                }
             })
             const dates = [...new Set(details.map(el => el.day))]
             return getForecastForEachDay(dates, details)
@@ -61,7 +66,7 @@ export const getWeather = createAsyncThunk('weather/getWeather',
             if (error instanceof Error) {
                 return thunkAPI.rejectWithValue(error.message);
             } else {
-                return thunkAPI.rejectWithValue('Error when fetching weather');
+                return thunkAPI.rejectWithValue("Error when fetching weather");
             }
         }
     }
@@ -77,7 +82,7 @@ const initialState = {
 
 
 export const weatherSlice = createSlice({
-    name: 'weatherSlice',
+    name: "weatherSlice",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -87,14 +92,14 @@ export const weatherSlice = createSlice({
                 state.error = null;
             })
             .addCase(getFirstCity.fulfilled, (state, action) => {
-               state.alert = !action.payload;
+                state.alert = !action.payload;
                 state.city = action.payload
                 state.loading = false;
                 state.error = null;
             })
             .addCase(getFirstCity.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload ?? 'Failed to fetch city';
+                state.error = action.payload ?? "Failed to fetch city";
             })
             .addCase(getWeather.pending, (state) => {
                 state.loading = true;
@@ -107,12 +112,10 @@ export const weatherSlice = createSlice({
             })
             .addCase(getWeather.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload ?? 'Failed to fetch city';
+                state.error = action.payload ?? "Failed to fetch city";
             })
     }
 })
 
-
-export const {} = weatherSlice.actions
 
 export default weatherSlice.reducer
