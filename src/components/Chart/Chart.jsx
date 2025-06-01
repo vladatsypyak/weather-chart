@@ -15,11 +15,11 @@ function Chart() {
 
     return (
         <div className="chart_wrap">
-            {city ? <BarChart width={730} height={250} data={forecast} margin={{top: 20, right: 20, bottom: 20, left: 20}} >
-                <XAxis dataKey="day" />
-                <YAxis />
+            {city ? <BarChart layout={'vertical'} width={900} height={400} data={forecast} margin={{top: 20, right: 20, bottom: 20, left: 20}} >
+                <XAxis type="number" domain={['auto', 'auto']} unit={"°C"} />
+                <YAxis type="category"   dataKey="day" />
                 <Tooltip />
-                <Bar dataKey="data" fill="#8884d8" />
+                <Bar dataKey="temp" fill="#8884d8" unit={"°C"}/>
             </BarChart> :
                 <p>Please enter a city to see the forecast</p>}
 
