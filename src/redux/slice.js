@@ -3,7 +3,7 @@ import axios from "axios";
 import moment from "moment";
 
 
-const fetchCities = async (city) => await axios
+export const fetchCities = async (city) => await axios
     // eslint-disable-next-line no-undef
     .get(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${process.env.REACT_APP_API_KEY}`)
     .then(resp => resp.data)
@@ -84,7 +84,17 @@ const initialState = {
 export const weatherSlice = createSlice({
     name: "weatherSlice",
     initialState,
-    reducers: {},
+    reducers: {
+        setCity(state, action){
+            state.city = {
+                name:action.payload.name,
+                lon: action.payload.lon,
+                lat: action.payload.lat,
+                country: action.payload.country,
+                state: action.payload.state
+            }
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getFirstCity.pending, (state) => {
@@ -116,6 +126,6 @@ export const weatherSlice = createSlice({
             })
     }
 })
-
+export const {setCity} = weatherSlice.actions
 
 export default weatherSlice.reducer
