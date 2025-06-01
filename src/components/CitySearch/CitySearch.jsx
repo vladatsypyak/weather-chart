@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getFirstCity} from "../../redux/slice";
+import s from "./citySearch.module.scss"
 
 function CitySearch() {
     const city = useSelector(store => store.weatherSlice.city)
@@ -15,11 +16,11 @@ function CitySearch() {
 
 
     return (
-        <div className="CitySearch">
-            <input type="text" onInput={(e) => setCityInput(e.target.value)}/>
+        <div className={s.search_wrap}>
+            <input placeholder={"Type your city"} type="text" onInput={(e) => setCityInput(e.target.value)}/>
             <button onClick={onSearchClick}>Search</button>
-            {city && <p>{city.name}, {city.country}{city.state && ","} {city.state}</p>}
-            {alert && <p>No city was found</p>}
+            {city && <p className={s.text}>Forecast for {city.name}, {city.country}{city.state && ","} {city.state}</p>}
+            {alert && <p className={s.alert}>No city was found 😞 </p>}
         </div>
 
     );
