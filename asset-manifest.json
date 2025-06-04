@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/weather-chart/static/css/main.21ae5d7f.css",
-    "main.js": "/weather-chart/static/js/main.6ef8fdb0.js",
+    "main.css": "/weather-chart/static/css/main.44d2a0d0.css",
+    "main.js": "/weather-chart/static/js/main.c58b0c7b.js",
     "static/js/453.d7b8bf81.chunk.js": "/weather-chart/static/js/453.d7b8bf81.chunk.js",
     "static/media/temperature.png": "/weather-chart/static/media/temperature.d264c6856d9a5ab61809.png",
     "static/media/sun.png": "/weather-chart/static/media/sun.b972dcf61eb381f03551.png",
     "static/media/cloudy.png": "/weather-chart/static/media/cloudy.f009e441a604361a2783.png",
     "index.html": "/weather-chart/index.html",
-    "main.21ae5d7f.css.map": "/weather-chart/static/css/main.21ae5d7f.css.map",
-    "main.6ef8fdb0.js.map": "/weather-chart/static/js/main.6ef8fdb0.js.map",
+    "main.44d2a0d0.css.map": "/weather-chart/static/css/main.44d2a0d0.css.map",
+    "main.c58b0c7b.js.map": "/weather-chart/static/js/main.c58b0c7b.js.map",
     "453.d7b8bf81.chunk.js.map": "/weather-chart/static/js/453.d7b8bf81.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21ae5d7f.css",
-    "static/js/main.6ef8fdb0.js"
+    "static/css/main.44d2a0d0.css",
+    "static/js/main.c58b0c7b.js"
   ]
 }
