@@ -5,13 +5,13 @@ import moment from "moment";
 
 export const fetchCities = async (city) => await axios
     // eslint-disable-next-line no-undef
-    .get(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${process.env.REACT_APP_API_KEY}`)
+    .get(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${process.env.REACT_APP_API_KEY}`)
     .then(resp => resp.data)
     .catch(error => console.log(error))
 
 const fetchWeather = async (city) => {
     // eslint-disable-next-line no-undef
-    return await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
+    return await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
         .then(resp => resp.data)
         .catch(error => console.log(error))
 }
